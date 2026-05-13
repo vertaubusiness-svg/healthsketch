@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="헬스스케치 취급 제품 - 케이블머신, 러닝머신, 스미스머신, 레그프레스, 덤벨 세트 등 중고 헬스기구 전 품목 도매 판매." />
+  <meta name="keywords" content="중고헬스기구,케이블머신,랫풀다운,러닝머신,트레드밀,스미스머신,레그프레스,덤벨세트,바벨,원판,헬스기구도매" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="취급 제품 | 헬스스케치" />
+  <meta property="og:description" content="플레이트머신, 유산소기구, 오리지널머신, 프리웨이트 등 헬스장 전 품목 중고 도매 판매." />
+  <meta property="og:url" content="https://healthsketch.github.io/healthsketch/products.html" />
+  <meta property="og:site_name" content="헬스스케치" />
+  <meta property="og:locale" content="ko_KR" />
+  <link rel="canonical" href="https://healthsketch.github.io/healthsketch/products.html" />
+  <title>취급 제품 | 헬스스케치</title>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="헬스스케치 홈">
+        <span class="logo-hs">HS</span>
+        <span class="logo-text">
+          <span class="logo-main">Health Sketch</span>
+          <span class="logo-sub">헬스스케치</span>
+        </span>
+      </a>
+      <nav class="site-nav" id="site-nav" role="navigation" aria-label="주 메뉴">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">홈</a></li>
+          <li><a href="products.html" class="nav-link active">제품</a></li>
+          <li><a href="services.html" class="nav-link">서비스</a></li>
+          <li><a href="location.html" class="nav-link">매장안내</a></li>
+          <li><a href="contact.html" class="nav-link">문의</a></li>
+        </ul>
+      </nav>
+      <a href="tel:01099068300" class="header-phone" aria-label="전화문의">
+        <svg class="phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1 19.79 19.79 0 0 1 1.61 4.53 2 2 0 0 1 3.6 2.34h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l1.17-1.17a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span>010-9906-8300</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="site-nav">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
+  <div class="nav-overlay" id="nav-overlay"></div>
+
+  <main>
+
+    <!-- ===== PAGE HERO ===== -->
+    <section class="page-hero">
+      <div class="page-hero-bg"></div>
+      <div class="container page-hero-content">
+        <p class="page-hero-breadcrumb"><a href="index.html">홈</a> <span>/</span> 제품</p>
+        <h1 class="page-hero-title">취급 제품</h1>
+        <p class="page-hero-desc">헬스장 운영에 필요한 모든 중고 기구를 취급합니다</p>
+      </div>
+    </section>
+
+    <!-- ===== FILTER + PRODUCT GRID ===== -->
+    <section class="section products-section" id="products">
+      <div class="container">
+
+        <!-- Filter Tabs -->
+        <div class="filter-wrap" role="tablist" aria-label="카테고리 필터">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">전체</button>
+          <button class="filter-btn" data-filter="plate" role="tab" aria-selected="false">플레이트머신</button>
+          <button class="filter-btn" data-filter="cardio" role="tab" aria-selected="false">유산소</button>
+          <button class="filter-btn" data-filter="original" role="tab" aria-selected="false">오리지널머신</button>
+          <button class="filter-btn" data-filter="freeweight" role="tab" aria-selected="false">프리웨이트</button>
+          <button class="filter-btn" data-filter="etc" role="tab" aria-selected="false">기타</button>
+        </div>
+
+        <!-- Product Count -->
+        <p class="product-count" id="product-count" aria-live="polite">전체 <strong>25</strong>개 제품</p>
+
+        <!-- Product Grid -->
+        <div class="product-grid" id="product-grid">
+
+          <!-- ── 플레이트머신 ── -->
+          <article class="product-card" data-category="plate" id="plate">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="10" y="38" width="100" height="14" rx="5" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="5" y="28" width="18" height="34" rx="4" fill="#dde3f2" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="97" y="28" width="18" height="34" rx="4" fill="#dde3f2" stroke="#1a2d6e" stroke-width="2"/>
+                <line x1="40" y1="38" x2="40" y2="52" stroke="#c8a94a" stroke-width="2" stroke-dasharray="3 3"/>
+                <line x1="80" y1="38" x2="80" y2="52" stroke="#c8a94a" stroke-width="2" stroke-dasharray="3 3"/>
+                <rect x="35" y="20" width="10" height="50" rx="2" fill="#cdd5ee" stroke="#1a2d6e" stroke-width="1.5"/>
+                <rect x="75" y="20" width="10" height="50" rx="2" fill="#cdd5ee" stroke="#1a2d6e" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-plate">플레이트머신</span>
+              <h3 class="product-name">케이블 크로스오버 머신</h3>
+              <p class="product-desc">양방향 풀리 시스템, 상·하부 케이블 조절. 다기능 케이블 운동 가능.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="plate">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="15" y="15" width="90" height="60" rx="6" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="30" y="30" width="60" height="30" rx="3" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <line x1="60" y1="10" x2="60" y2="20" stroke="#c8a94a" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="60" cy="25" r="5" fill="#c8a94a" opacity="0.7"/>
+                <line x1="60" y1="75" x2="60" y2="80" stroke="#1a2d6e" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-plate">플레이트머신</span>
+              <h3 class="product-name">랫풀다운 머신</h3>
+              <p class="product-desc">광배근 강화 전문 머신. 무릎 패드 포함, 핸들 다양.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="plate">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="20" y="20" width="80" height="50" rx="6" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="35" y="35" width="50" height="20" rx="3" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <circle cx="60" cy="45" r="8" fill="#c8a94a" opacity="0.3" stroke="#c8a94a" stroke-width="1.5"/>
+                <line x1="60" y1="20" x2="60" y2="35" stroke="#1a2d6e" stroke-width="2"/>
+                <line x1="60" y1="55" x2="60" y2="70" stroke="#1a2d6e" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-plate">플레이트머신</span>
+              <h3 class="product-name">체스트 프레스 머신</h3>
+              <p class="product-desc">가슴 집중 운동. 좌우 독립 암 구조, 중량 미세 조절 가능.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="plate">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="10" y="30" width="100" height="30" rx="5" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="25" y="38" width="70" height="14" rx="3" fill="#dde3f2"/>
+                <rect x="5" y="25" width="12" height="40" rx="3" fill="#cdd5ee" stroke="#1a2d6e" stroke-width="1.5"/>
+                <rect x="103" y="25" width="12" height="40" rx="3" fill="#cdd5ee" stroke="#1a2d6e" stroke-width="1.5"/>
+                <path d="M20 25 L100 25" stroke="#c8a94a" stroke-width="2" stroke-dasharray="5 3"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-plate">플레이트머신</span>
+              <h3 class="product-name">시티드 로우 머신</h3>
+              <p class="product-desc">등 중부·하부 집중. 패드 높낮이 조절, V바 포함.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="plate">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="20" y="15" width="80" height="55" rx="6" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <ellipse cx="60" cy="42" rx="22" ry="18" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <line x1="60" y1="15" x2="60" y2="24" stroke="#c8a94a" stroke-width="3" stroke-linecap="round"/>
+                <line x1="60" y1="60" x2="60" y2="70" stroke="#c8a94a" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-plate">플레이트머신</span>
+              <h3 class="product-name">숄더 프레스 머신</h3>
+              <p class="product-desc">어깨 삼각근 집중 강화. 중립 그립, 요추 지지 패드.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="plate">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M20 70 Q40 20 60 45 Q80 70 100 30" stroke="#1a2d6e" stroke-width="3" fill="none"/>
+                <rect x="15" y="55" width="20" height="25" rx="3" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="1.5"/>
+                <rect x="85" y="20" width="20" height="25" rx="3" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="1.5"/>
+                <circle cx="60" cy="45" r="6" fill="#c8a94a" opacity="0.5"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-plate">플레이트머신</span>
+              <h3 class="product-name">케이블 로우 머신</h3>
+              <p class="product-desc">로우 풀리 집중 운동. 발판 포함, 다양한 핸들 호환.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <!-- ── 유산소 ── -->
+          <article class="product-card" data-category="cardio" id="cardio">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="15" y="55" width="90" height="12" rx="4" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="20" y="20" width="30" height="35" rx="3" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <rect x="25" y="25" width="20" height="10" rx="2" fill="#1a2d6e" opacity="0.2"/>
+                <line x1="30" y1="55" x2="25" y2="67" stroke="#1a2d6e" stroke-width="2"/>
+                <line x1="45" y1="55" x2="50" y2="67" stroke="#1a2d6e" stroke-width="2"/>
+                <path d="M18 55 Q60 40 102 55" stroke="#c8a94a" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-cardio">유산소</span>
+              <h3 class="product-name">러닝머신 (트레드밀)</h3>
+              <p class="product-desc">최대 시속 20km, 경사 조절 15단계. 상업용 전동 모터.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="cardio">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="60" cy="55" r="25" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <circle cx="60" cy="55" r="8" fill="#1a2d6e" opacity="0.2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <line x1="60" y1="30" x2="60" y2="47" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="45" y="15" width="30" height="18" rx="4" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <line x1="52" y1="33" x2="48" y2="47" stroke="#c8a94a" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="68" y1="33" x2="72" y2="47" stroke="#c8a94a" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-cardio">유산소</span>
+              <h3 class="product-name">업라이트 바이크</h3>
+              <p class="product-desc">자기저항 방식 32단계. 심박센서, LCD 컴퓨터 내장.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="cardio">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="10" y="40" width="100" height="30" rx="6" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <circle cx="35" cy="70" r="12" fill="#dde3f2" stroke="#1a2d6e" stroke-width="2"/>
+                <circle cx="85" cy="70" r="12" fill="#dde3f2" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="45" y="20" width="30" height="22" rx="4" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <line x1="60" y1="20" x2="60" y2="40" stroke="#1a2d6e" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-cardio">유산소</span>
+              <h3 class="product-name">리컴번트 바이크</h3>
+              <p class="product-desc">등받이형 좌식 바이크. 하지 부담 최소화, 재활 적합.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="cardio">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="40" y="10" width="40" height="70" rx="5" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="48" y="18" width="24" height="14" rx="2" fill="#1a2d6e" opacity="0.2"/>
+                <line x1="50" y1="80" x2="43" y2="85" stroke="#1a2d6e" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="70" y1="80" x2="77" y2="85" stroke="#1a2d6e" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M48 40 h24 M48 50 h24 M48 60 h24" stroke="#c8a94a" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-cardio">유산소</span>
+              <h3 class="product-name">스텝퍼 머신</h3>
+              <p class="product-desc">하체·심폐 동시 강화. 유압식 저항, 핸드레일 포함.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="cardio">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="10" y="55" width="100" height="14" rx="4" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <path d="M20 55 L35 25 L85 25 L100 55" stroke="#1a2d6e" stroke-width="2" fill="none"/>
+                <rect x="30" y="18" width="60" height="14" rx="3" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <line x1="30" y1="25" x2="20" y2="55" stroke="#c8a94a" stroke-width="2" stroke-dasharray="4 3"/>
+                <line x1="90" y1="25" x2="100" y2="55" stroke="#c8a94a" stroke-width="2" stroke-dasharray="4 3"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-cardio">유산소</span>
+              <h3 class="product-name">로잉머신</h3>
+              <p class="product-desc">전신 유산소 운동. 에어/수력 저항 방식, 슬라이드 시트.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <!-- ── 오리지널머신 ── -->
+          <article class="product-card" data-category="original" id="original">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="18" y="8" width="8" height="74" rx="3" fill="#dde3f2" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="94" y="8" width="8" height="74" rx="3" fill="#dde3f2" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="18" y="10" width="84" height="8" rx="2" fill="#cdd5ee" stroke="#1a2d6e" stroke-width="1.5"/>
+                <rect x="18" y="72" width="84" height="8" rx="2" fill="#cdd5ee" stroke="#1a2d6e" stroke-width="1.5"/>
+                <rect x="35" y="30" width="50" height="8" rx="2" fill="#c8a94a" opacity="0.7" stroke="#a8882e" stroke-width="1.5"/>
+                <line x1="60" y1="38" x2="60" y2="72" stroke="#1a2d6e" stroke-width="2" stroke-dasharray="4 3"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-original">오리지널머신</span>
+              <h3 class="product-name">스미스 머신</h3>
+              <p class="product-desc">고정 레일 바벨 시스템. 안전 스토퍼 내장, 카운터 밸런스.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="original">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="15" y="50" width="90" height="20" rx="4" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <path d="M25 50 L35 15 L85 15 L95 50" stroke="#1a2d6e" stroke-width="2" fill="none"/>
+                <rect x="35" y="8" width="50" height="14" rx="3" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <circle cx="35" cy="70" r="8" fill="#cdd5ee" stroke="#1a2d6e" stroke-width="2"/>
+                <circle cx="85" cy="70" r="8" fill="#cdd5ee" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="45" y="35" width="30" height="16" rx="2" fill="#c8a94a" opacity="0.4"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-original">오리지널머신</span>
+              <h3 class="product-name">레그 프레스 머신</h3>
+              <p class="product-desc">45도 경사형. 대용량 중량 스택, 발판 위치 3단계 조절.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="original">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M15 75 L40 20 L80 20 L105 75" stroke="#1a2d6e" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+                <rect x="35" y="12" width="50" height="16" rx="3" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <rect x="15" y="68" width="90" height="12" rx="3" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <line x1="60" y1="28" x2="60" y2="68" stroke="#c8a94a" stroke-width="2" stroke-dasharray="4 3"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-original">오리지널머신</span>
+              <h3 class="product-name">해크 스쿼트 머신</h3>
+              <p class="product-desc">대퇴사두근 집중. 어깨 패드 포함, 안전 잠금장치 탑재.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="original">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="15" y="30" width="90" height="30" rx="6" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="30" y="38" width="60" height="14" rx="3" fill="#dde3f2"/>
+                <rect x="22" y="60" width="20" height="20" rx="3" fill="#cdd5ee" stroke="#1a2d6e" stroke-width="1.5"/>
+                <rect x="78" y="60" width="20" height="20" rx="3" fill="#cdd5ee" stroke="#1a2d6e" stroke-width="1.5"/>
+                <line x1="42" y1="45" x2="78" y2="45" stroke="#c8a94a" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-original">오리지널머신</span>
+              <h3 class="product-name">레그 익스텐션 / 컬 머신</h3>
+              <p class="product-desc">대퇴사두근·햄스트링 집중. 2-in-1 복합 기능.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="original">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <ellipse cx="60" cy="50" rx="40" ry="25" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <ellipse cx="60" cy="50" rx="20" ry="12" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <line x1="60" y1="10" x2="60" y2="25" stroke="#1a2d6e" stroke-width="2"/>
+                <line x1="60" y1="75" x2="60" y2="80" stroke="#1a2d6e" stroke-width="2"/>
+                <line x1="20" y1="50" x2="10" y2="50" stroke="#c8a94a" stroke-width="3" stroke-linecap="round"/>
+                <line x1="100" y1="50" x2="110" y2="50" stroke="#c8a94a" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-original">오리지널머신</span>
+              <h3 class="product-name">체스트 플라이 머신</h3>
+              <p class="product-desc">가슴 내전근 집중. 좌우 독립 암, 시작 포지션 조절.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <!-- ── 프리웨이트 ── -->
+          <article class="product-card" data-category="freeweight" id="freeweight">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="50" y="40" width="20" height="10" rx="2" fill="#dde3f2" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="5" y="32" width="45" height="26" rx="5" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="70" y="32" width="45" height="26" rx="5" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="12" y="22" width="14" height="46" rx="3" fill="#cdd5ee" stroke="#1a2d6e" stroke-width="1.5"/>
+                <rect x="94" y="22" width="14" height="46" rx="3" fill="#cdd5ee" stroke="#1a2d6e" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-freeweight">프리웨이트</span>
+              <h3 class="product-name">올림픽 바벨 세트</h3>
+              <p class="product-desc">20kg 봉 + 원판 풀세트. 직경 50mm 올림픽 규격.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="freeweight">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="10" y="55" width="100" height="12" rx="3" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="1.5"/>
+                <rect x="15" y="55" width="10" height="12" rx="2" fill="#cdd5ee"/>
+                <rect x="30" y="55" width="10" height="12" rx="2" fill="#cdd5ee"/>
+                <rect x="45" y="55" width="10" height="12" rx="2" fill="#cdd5ee"/>
+                <rect x="60" y="55" width="10" height="12" rx="2" fill="#cdd5ee"/>
+                <rect x="75" y="55" width="10" height="12" rx="2" fill="#cdd5ee"/>
+                <rect x="90" y="55" width="10" height="12" rx="2" fill="#cdd5ee"/>
+                <ellipse cx="20" cy="49" rx="8" ry="6" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <ellipse cx="35" cy="47" rx="9" ry="7" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <ellipse cx="50" cy="45" rx="10" ry="8" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <ellipse cx="65" cy="43" rx="11" ry="9" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <ellipse cx="80" cy="41" rx="12" ry="10" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <ellipse cx="95" cy="39" rx="13" ry="11" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-freeweight">프리웨이트</span>
+              <h3 class="product-name">덤벨 세트 (5~50kg)</h3>
+              <p class="product-desc">육각 고무코팅 덤벨. 2.5kg 단위 구성, 랙 포함.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="freeweight">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="30" cy="50" r="22" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <circle cx="30" cy="50" r="10" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <circle cx="90" cy="50" r="22" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <circle cx="90" cy="50" r="10" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <circle cx="30" cy="50" r="16" fill="none" stroke="#c8a94a" stroke-width="1" stroke-dasharray="4 3"/>
+                <circle cx="90" cy="50" r="16" fill="none" stroke="#c8a94a" stroke-width="1" stroke-dasharray="4 3"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-freeweight">프리웨이트</span>
+              <h3 class="product-name">올림픽 원판 세트</h3>
+              <p class="product-desc">고무코팅 원판 (1.25~25kg). 올림픽 규격 직경 50mm.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="freeweight">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="15" y="45" width="90" height="25" rx="5" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="20" y="35" width="25" height="16" rx="3" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <rect x="75" y="35" width="25" height="16" rx="3" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <line x1="15" y1="68" x2="15" y2="75" stroke="#1a2d6e" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="105" y1="68" x2="105" y2="75" stroke="#1a2d6e" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-freeweight">프리웨이트</span>
+              <h3 class="product-name">플랫 벤치</h3>
+              <p class="product-desc">상업용 벤치프레스 전용. 고중량 내구 프레임, 가죽 패드.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="freeweight">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="10" y="50" width="100" height="25" rx="5" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="15" y="35" width="30" height="20" rx="3" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <rect x="75" y="35" width="30" height="20" rx="3" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <rect x="42" y="42" width="36" height="12" rx="2" fill="#cdd5ee" stroke="#1a2d6e" stroke-width="1.5"/>
+                <path d="M10 50 L18 30" stroke="#1a2d6e" stroke-width="2" stroke-linecap="round"/>
+                <path d="M110 50 L102 30" stroke="#1a2d6e" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-freeweight">프리웨이트</span>
+              <h3 class="product-name">인클라인 벤치</h3>
+              <p class="product-desc">각도 조절 (0/30/45/60/90도). 상부 가슴 집중 훈련.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="freeweight">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="15" y="25" width="20" height="50" rx="4" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="40" y="25" width="20" height="50" rx="4" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="65" y="25" width="20" height="50" rx="4" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="90" y="25" width="15" height="50" rx="4" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="10" y="70" width="100" height="8" rx="3" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-freeweight">프리웨이트</span>
+              <h3 class="product-name">덤벨 랙 (4단)</h3>
+              <p class="product-desc">대용량 4단 덤벨 랙. 강철 용접 구조, 고중량 내구.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <!-- ── 기타 ── -->
+          <article class="product-card" data-category="etc" id="etc">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="10" y="55" width="100" height="18" rx="4" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <path d="M20 55 Q60 25 100 55" stroke="#c8a94a" stroke-width="2.5" fill="none"/>
+                <rect x="28" y="40" width="64" height="16" rx="3" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5" opacity="0.7"/>
+                <circle cx="35" cy="48" r="3" fill="#1a2d6e" opacity="0.4"/>
+                <circle cx="85" cy="48" r="3" fill="#1a2d6e" opacity="0.4"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-etc">기타</span>
+              <h3 class="product-name">스트레칭 존 매트</h3>
+              <p class="product-desc">두께 10~20mm 고밀도 폼. 미끄럼 방지 코팅, 탈부착 조각.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="etc">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <ellipse cx="60" cy="55" rx="38" ry="18" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <ellipse cx="60" cy="55" rx="25" ry="11" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5" stroke-dasharray="5 3"/>
+                <path d="M30 45 Q60 20 90 45" stroke="#c8a94a" stroke-width="2" fill="none"/>
+                <circle cx="60" cy="35" r="6" fill="#c8a94a" opacity="0.4" stroke="#c8a94a" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-etc">기타</span>
+              <h3 class="product-name">폼롤러 세트</h3>
+              <p class="product-desc">표준형/그리드형 혼합. 근막이완, 자가근막이완 전용.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="etc">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="15" y="20" width="90" height="50" rx="8" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="25" y="30" width="30" height="20" rx="4" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <rect x="65" y="30" width="30" height="20" rx="4" fill="#dde3f2" stroke="#1a2d6e" stroke-width="1.5"/>
+                <line x1="40" y1="55" x2="40" y2="65" stroke="#c8a94a" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="80" y1="55" x2="80" y2="65" stroke="#c8a94a" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-etc">기타</span>
+              <h3 class="product-name">거울 / 월미러</h3>
+              <p class="product-desc">헬스장 전용 대형 안전 거울. 강화유리, 벽 고정 브라켓 포함.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="etc">
+            <div class="product-thumb">
+              <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="20" y="15" width="80" height="60" rx="6" fill="#e8ecf6" stroke="#1a2d6e" stroke-width="2"/>
+                <rect x="30" y="25" width="60" height="8" rx="2" fill="#1a2d6e" opacity="0.2"/>
+                <rect x="30" y="38" width="40" height="6" rx="2" fill="#c8a94a" opacity="0.5"/>
+                <rect x="30" y="50" width="50" height="6" rx="2" fill="#c8a94a" opacity="0.3"/>
+                <rect x="30" y="62" width="30" height="6" rx="2" fill="#c8a94a" opacity="0.2"/>
+              </svg>
+            </div>
+            <div class="product-body">
+              <span class="product-badge badge-etc">기타</span>
+              <h3 class="product-name">운동 악세서리 패키지</h3>
+              <p class="product-desc">케이블 핸들·풀리·카라비너 등 소모품 일괄 구성.</p>
+              <a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>
+            </div>
+          </article>
+
+        </div><!-- /product-grid -->
+
+        <!-- No Result -->
+        <div class="no-result" id="no-result" hidden>
+          <p>해당 카테고리에 제품이 없습니다.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== PRODUCT CTA ===== -->
+    <section class="product-cta-section">
+      <div class="container product-cta-inner">
+        <div class="product-cta-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="24" cy="24" r="20" stroke-opacity="0.3"/>
+            <path d="M16 24 h16 M24 16 v16" stroke-linecap="round" stroke-width="2.5"/>
+          </svg>
+        </div>
+        <div>
+          <h2>원하는 제품이 없으신가요?</h2>
+          <p>목록에 없는 기종도 매입·수배 가능합니다. 직접 문의주시면 최대한 도와드립니다.</p>
+        </div>
+        <a href="contact.html" class="btn btn-primary">직접 문의하기</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo" aria-label="헬스스케치 홈">
+          <span class="logo-hs">HS</span>
+          <span class="footer-logo-text">
+            <span>Health Sketch</span>
+            <span>헬스스케치</span>
+          </span>
+        </a>
+        <p class="footer-tagline">중고 헬스기구 전문 도매업체</p>
+      </div>
+      <div class="footer-info">
+        <ul class="footer-details">
+          <li>
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/></svg>
+            <span>대표자: 김종태</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+            <span>경기도 파주시 탄현면 배나무길 67-13</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/></svg>
+            <span><a href="tel:01099068300">010-9906-8300</a></span>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <a href="http://cafe.naver.com/healthsketch" class="footer-cafe" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          네이버 카페 방문하기
+        </a>
+        <nav class="footer-nav" aria-label="푸터 메뉴">
+          <a href="products.html">제품</a>
+          <a href="services.html">서비스</a>
+          <a href="location.html">매장안내</a>
+          <a href="contact.html">문의</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2024 헬스스케치 (HS Health Sketch). All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
