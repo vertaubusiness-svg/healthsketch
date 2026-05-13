@@ -152,7 +152,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   flex-shrink: 0;
   text-decoration: none;
 }
-/* 헤더 이미지 로고 (logo.png 적용 시) */
+/* 헤더 이미지 로고 (logo.jpg 적용 시) */
 .logo-img {
   height: 44px;
   width: auto;
