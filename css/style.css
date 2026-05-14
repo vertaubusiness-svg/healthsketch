@@ -152,17 +152,23 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   flex-shrink: 0;
   text-decoration: none;
 }
-/* 헤더 이미지 로고 (logo.jpg 적용 시) */
+/* 헤더 이미지 로고 */
 .logo-img {
   height: 44px;
   width: auto;
   object-fit: contain;
   filter: brightness(0) invert(1);
-  flex-shrink: 0;
-  transition: filter var(--transition);
 }
 .site-header.scrolled .logo-img {
   filter: none;
+}
+
+/* 푸터 이미지 로고 */
+.footer-logo-img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
 /* 푸터·폴백용 텍스트 로고 박스 — .footer-logo에서 계속 사용 */
