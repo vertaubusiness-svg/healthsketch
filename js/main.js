@@ -150,6 +150,8 @@
   }
 
   /* ---------- Contact form ---------- */
+  const GAS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+
   const contactForm = document.getElementById('contact-form');
   const formSuccess = document.getElementById('form-success');
   const formResetBtn = document.getElementById('form-reset-btn');
@@ -192,19 +194,22 @@
       const submitBtn = document.getElementById('form-submit');
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '전송 중…'; }
 
-      /* Formspree로 fetch 전송 */
-      fetch(contactForm.action, {
+      const payload = {
+        name:    document.getElementById('name').value.trim(),
+        phone:   document.getElementById('phone').value.trim(),
+        type:    document.getElementById('inquiry-type').value,
+        message: document.getElementById('message').value.trim(),
+      };
+
+      fetch(GAS_SCRIPT_URL, {
         method: 'POST',
-        body: new FormData(contactForm),
-        headers: { 'Accept': 'application/json' }
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       })
-        .then(res => {
-          if (res.ok) {
-            contactForm.hidden = true;
-            if (formSuccess) formSuccess.hidden = false;
-          } else {
-            return res.json().then(data => { throw data; });
-          }
+        .then(() => {
+          contactForm.hidden = true;
+          if (formSuccess) formSuccess.hidden = false;
         })
         .catch(() => {
           if (submitBtn) {
