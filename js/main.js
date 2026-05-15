@@ -150,7 +150,7 @@
   }
 
   /* ---------- Contact form ---------- */
-  const GAS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+  const GAS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzsWH8B7a5lC4tMNY-uGXoTMn7R0a7VD9V1EAHVjnyI41IVAJx48VxrFhcY4KoPQCisRQ/exec';
 
   const contactForm = document.getElementById('contact-form');
   const formSuccess = document.getElementById('form-success');
