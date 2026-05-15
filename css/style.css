@@ -2042,6 +2042,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* Form success */
+.form-success[hidden] { display: none !important; }
 .form-success {
   text-align: center;
   padding: 48px 20px;

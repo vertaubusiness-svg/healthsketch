@@ -209,13 +209,20 @@
         body: JSON.stringify(payload),
       })
         .then(() => {
-          contactForm.hidden = true;
-          if (formSuccess) formSuccess.hidden = false;
+          contactForm.style.display = 'none';
+          if (formSuccess) {
+            formSuccess.removeAttribute('hidden');
+            formSuccess.style.display = 'flex';
+          }
         })
         .catch(() => {
           if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.textContent = '문의 전송하기';
+          }
+          if (formSuccess) {
+            formSuccess.setAttribute('hidden', '');
+            formSuccess.style.display = 'none';
           }
           alert('전송 중 오류가 발생했습니다. 잠시 후 다시 시도하거나 전화로 문의해 주세요.');
         });
@@ -225,8 +232,9 @@
   if (formResetBtn && contactForm && formSuccess) {
     formResetBtn.addEventListener('click', () => {
       contactForm.reset();
-      contactForm.hidden = false;
-      formSuccess.hidden = true;
+      contactForm.style.display = '';
+      formSuccess.setAttribute('hidden', '');
+      formSuccess.style.display = 'none';
       const submitBtn = document.getElementById('form-submit');
       if (submitBtn) {
         submitBtn.disabled = false;
