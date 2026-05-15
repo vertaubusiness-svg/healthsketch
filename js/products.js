@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var SHEET_ID   = 'SHEET_ID_PLACEHOLDER';
+  var SHEET_ID   = '1rS4RLa8LgeHINOOPWNy2fEpizjbAsUoU4MV21SWnZt0';
   var SHEET_NAME = '제품목록';
   var CSV_URL    = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID +
                    '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(SHEET_NAME);
