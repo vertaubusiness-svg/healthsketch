@@ -8,12 +8,11 @@ var SHEET_NAME   = '문의접수';                   // 스프레드시트 시�
 
 function doPost(e) {
   try {
-    var data    = JSON.parse(e.postData.contents);
-    var name    = data.name    || '';
-    var phone   = data.phone   || '';
-    var email   = data.email   || '';
-    var type    = data.type    || '';
-    var message = data.message || '';
+    var name    = e.parameter.name    || '';
+    var phone   = e.parameter.phone   || '';
+    var email   = e.parameter.email   || '';
+    var type    = e.parameter.type    || '';
+    var message = e.parameter.message || '';
     var now     = Utilities.formatDate(new Date(), 'Asia/Seoul', 'yyyy-MM-dd HH:mm:ss');
 
     // 스프레드시트에 행 추가

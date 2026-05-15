@@ -194,25 +194,27 @@
       const submitBtn = document.getElementById('form-submit');
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '전송 중…'; }
 
-      const payload = {
-        name:    document.getElementById('name').value.trim(),
-        phone:   document.getElementById('phone').value.trim(),
-        email:   (document.getElementById('email') || {}).value?.trim() || '',
-        type:    document.getElementById('inquiry-type').value,
-        message: document.getElementById('message').value.trim(),
-      };
+      const params = new URLSearchParams();
+      params.append('name',    document.getElementById('name').value.trim());
+      params.append('phone',   document.getElementById('phone').value.trim());
+      params.append('email',   (document.getElementById('email') || { value: '' }).value.trim());
+      params.append('type',    document.getElementById('inquiry-type').value);
+      params.append('message', document.getElementById('message').value.trim());
 
       fetch(GAS_SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        body: params,
       })
-        .then(() => {
-          contactForm.style.display = 'none';
-          if (formSuccess) {
-            formSuccess.removeAttribute('hidden');
-            formSuccess.style.display = 'flex';
+        .then(res => res.json())
+        .then(data => {
+          if (data.result === 'ok') {
+            contactForm.style.display = 'none';
+            if (formSuccess) {
+              formSuccess.removeAttribute('hidden');
+              formSuccess.style.display = 'flex';
+            }
+          } else {
+            throw new Error(data.error || '서버 오류');
           }
         })
         .catch(() => {
