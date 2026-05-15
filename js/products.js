@@ -4,7 +4,7 @@
   var SHEET_ID   = '1rS4RLa8LgeHINOOPWNy2fEpizjbAsUoU4MV21SWnZt0';
   var SHEET_NAME = '제품목록';
   var CSV_URL    = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID +
-                   '/export?format=csv&sheet=' + encodeURIComponent(SHEET_NAME);
+                   '/export?format=csv&gid=0';
 
   /* ── 카테고리 정의 ── */
   var CAT_MAP = {
