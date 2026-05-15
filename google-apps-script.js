@@ -3,7 +3,7 @@
 //  배포 후 exec URL을 main.js의 GAS_SCRIPT_URL에 붙여 넣으세요.
 // ============================================================
 
-var NOTIFY_EMAIL = 'jtkim5904@gmail.com'; // 알림 받을 이메일
+var NOTIFY_EMAIL = 'vertau.business@gmail.com'; // 알림 받을 이메일
 var SHEET_NAME   = '문의접수';             // 스프레드시트 시트 이름
 
 function doPost(e) {
