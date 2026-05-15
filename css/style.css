@@ -1184,6 +1184,56 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: var(--text-muted);
 }
 
+/* Products loading */
+.products-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+}
+.products-loading[hidden] { display: none; }
+.spinner {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--gray-200);
+  border-top-color: var(--navy);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Products fetch error */
+.products-error {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  grid-column: 1 / -1;
+}
+
+/* Sold-out card */
+.product-card--sold {
+  opacity: .5;
+  pointer-events: none;
+}
+.product-card--sold .product-name {
+  text-decoration: line-through;
+}
+
+/* Status badges */
+.product-status {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  margin-bottom: 4px;
+}
+.status-sold     { background: #fce8e8; color: #7a1a1a; }
+.status-reserved { background: #fef3e2; color: #7a4a00; }
+
 /* Product CTA */
 .product-cta-section {
   background: var(--navy-faint);
