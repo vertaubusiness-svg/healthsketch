@@ -192,10 +192,27 @@
       const submitBtn = document.getElementById('form-submit');
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '전송 중…'; }
 
-      setTimeout(() => {
-        contactForm.hidden = true;
-        if (formSuccess) formSuccess.hidden = false;
-      }, 600);
+      /* Formspree로 fetch 전송 */
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then(res => {
+          if (res.ok) {
+            contactForm.hidden = true;
+            if (formSuccess) formSuccess.hidden = false;
+          } else {
+            return res.json().then(data => { throw data; });
+          }
+        })
+        .catch(() => {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = '문의 전송하기';
+          }
+          alert('전송 중 오류가 발생했습니다. 잠시 후 다시 시도하거나 전화로 문의해 주세요.');
+        });
     });
   }
 
