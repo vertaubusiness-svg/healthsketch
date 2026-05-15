@@ -1851,7 +1851,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   letter-spacing: .02em;
   transition: color var(--transition);
 }
-.phone-banner-number svg { color: var(--accent); flex-shrink: 0; }
+.phone-banner-number svg { color: var(--accent); flex-shrink: 0; width: 22px; height: 22px; }
 .phone-banner-number:hover { color: var(--accent); }
 .phone-banner-hours {
   display: flex;
@@ -1919,6 +1919,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 700;
   color: var(--text);
   letter-spacing: -.01em;
+}
+.form-label-optional {
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--text-muted, #888);
 }
 .required { color: #e53935; }
 .form-input,

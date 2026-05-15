@@ -46,7 +46,17 @@ const GAS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxABC123.../exec
 - 스프레드시트 `문의접수` 시트에 행이 추가되는지 확인
 - `NOTIFY_EMAIL` 주소로 알림 메일 수신 확인
 
+## 6. google-apps-script.js 수정 후 재배포 방법
+
+코드를 수정(예: 고객 확인 이메일 내용 변경, NOTIFY_EMAIL 변경 등)했을 때:
+
+1. Apps Script 편집기에서 `Code.gs` 내용을 최신 `google-apps-script.js`로 교체 후 저장
+2. **배포 > 새 배포** 클릭 (기존 배포 수정이 아닌 **새 배포**여야 변경 사항 반영)
+3. 새 배포 URL이 기존과 다르면 `main.js`의 `GAS_SCRIPT_URL`도 함께 교체
+
+> ⚠️ **기존 배포 URL은 수정해도 코드가 갱신되지 않습니다.** 반드시 새 배포를 생성하세요.
+
 ## 참고사항
 
-- Apps Script를 수정한 경우 **새 배포**를 만들어야 변경 사항이 반영됩니다. (기존 URL은 구버전을 가리킴)
+- 고객 확인 이메일은 문의 폼의 이메일 필드에 유효한 주소를 입력한 경우에만 자동 발송됩니다.
 - 스프레드시트 이름(`SHEET_NAME`)을 변경했다면 코드 상단 변수도 동일하게 수정하세요.

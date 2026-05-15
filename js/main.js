@@ -197,6 +197,7 @@
       const payload = {
         name:    document.getElementById('name').value.trim(),
         phone:   document.getElementById('phone').value.trim(),
+        email:   (document.getElementById('email') || {}).value?.trim() || '',
         type:    document.getElementById('inquiry-type').value,
         message: document.getElementById('message').value.trim(),
       };
