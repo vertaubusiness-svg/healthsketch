@@ -1213,11 +1213,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* Sold-out card */
-.product-card--sold {
+.product-card--sold,
+.product-card.sold-out {
   opacity: .5;
   pointer-events: none;
 }
-.product-card--sold .product-name {
+.product-card--sold .product-name,
+.product-card.sold-out .product-name {
   text-decoration: line-through;
 }
 
