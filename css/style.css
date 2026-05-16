@@ -1215,7 +1215,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* Sold-out card */
 .product-card--sold,
 .product-card.sold-out {
-  opacity: .5;
+  opacity: 0.45 !important;
   pointer-events: none;
 }
 .product-card--sold .product-name,

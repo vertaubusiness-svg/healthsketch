@@ -121,6 +121,7 @@
       ? ''
       : '<a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>';
 
+    if (sold) console.log('[sold-out]', p.name, '→ product-card--sold 클래스 적용');
     return '<article class="product-card' + (sold ? ' product-card--sold' : '') +
       '" data-category="' + catKey + '">' +
       '<div class="product-thumb">' + thumb + '</div>' +
