@@ -82,11 +82,11 @@
     return lines.slice(1).map(function (line) {
       var c = parseCSVLine(line);
       return {
-        name:     c[0] || '',
-        category: c[1] || '',
-        desc:     c[2] || '',
-        status:   c[3] || '판매중',
-        imageUrl: c[4] || '',
+        name:     (c[0] || '').trim(),
+        category: (c[1] || '').trim(),
+        desc:     (c[2] || '').trim(),
+        status:   (c[3] || '').trim() || '판매중',
+        imageUrl: (c[4] || '').trim(),
       };
     }).filter(function (p) { return p.name; });
   }
