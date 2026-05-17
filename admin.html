@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>관리자 | 헬스스케치</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #1a2d6e;
+      --navy-dark: #0f1d4a;
+      --navy-faint: #f0f2fa;
+      --gold: #c8a94a;
+      --white: #ffffff;
+      --gray-100: #f8f9fa;
+      --gray-200: #e9ecef;
+      --gray-400: #ced4da;
+      --text: #212529;
+      --text-muted: #6c757d;
+      --danger: #dc3545;
+      --success: #198754;
+      --radius: 8px;
+      --shadow: 0 2px 8px rgba(0,0,0,.08);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,.16);
+      --transition: .2s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans KR', sans-serif; background: var(--gray-100); color: var(--text); min-height: 100vh; }
+
+    /* ── Login ── */
+    #login-screen {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+      padding: 20px;
+    }
+    .login-card {
+      background: var(--white); border-radius: 16px;
+      padding: 48px 40px; width: 100%; max-width: 400px;
+      box-shadow: var(--shadow-lg);
+    }
+    .login-logo { text-align: center; margin-bottom: 32px; }
+    .login-logo-title { font-size: 22px; font-weight: 900; color: var(--navy); letter-spacing: -.02em; }
+    .login-logo-sub  { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .login-error {
+      background: #fce8e8; color: var(--danger); border-radius: 6px;
+      padding: 10px 14px; font-size: 13px; margin-bottom: 16px; display: none;
+    }
+    .login-error.is-visible { display: block; }
+
+    /* ── Common Form ── */
+    .form-group { margin-bottom: 14px; }
+    .form-label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 5px; }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; padding: 9px 12px; border: 1.5px solid var(--gray-400);
+      border-radius: var(--radius); font-family: inherit; font-size: 14px;
+      color: var(--text); background: var(--white); outline: none;
+      transition: border-color var(--transition);
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--navy); }
+    .form-textarea { resize: vertical; min-height: 72px; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 9px 18px; border: none; border-radius: var(--radius);
+      font-family: inherit; font-size: 14px; font-weight: 700;
+      cursor: pointer; transition: all var(--transition); text-decoration: none;
+    }
+    .btn:disabled { opacity: .55; cursor: not-allowed; }
+    .btn-primary   { background: var(--navy); color: var(--white); }
+    .btn-primary:not(:disabled):hover { background: var(--navy-dark); }
+    .btn-danger    { background: var(--danger); color: var(--white); }
+    .btn-danger:not(:disabled):hover  { background: #b02a37; }
+    .btn-outline   { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
+    .btn-outline:not(:disabled):hover { background: var(--navy-faint); }
+    .btn-ghost     { background: transparent; color: var(--text-muted); border: 1.5px solid var(--gray-400); }
+    .btn-ghost:not(:disabled):hover   { border-color: var(--navy); color: var(--navy); }
+    .btn-sm   { padding: 5px 12px; font-size: 12px; }
+    .btn-full { width: 100%; }
+
+    /* ── Dashboard ── */
+    .admin-header {
+      background: var(--navy); height: 56px; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+    }
+    .admin-header-title { color: var(--white); font-size: 16px; font-weight: 700; }
+    .admin-header-title span { color: var(--gold); }
+    .admin-main {
+      max-width: 1120px; margin: 0 auto; padding: 28px 20px;
+      display: grid; grid-template-columns: 380px 1fr; gap: 24px; align-items: start;
+    }
+    @media (max-width: 860px) { .admin-main { grid-template-columns: 1fr; } }
+
+    .admin-card { background: var(--white); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+    .admin-card-header {
+      padding: 14px 20px; border-bottom: 1px solid var(--gray-200);
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    }
+    .admin-card-title { font-size: 15px; font-weight: 700; color: var(--navy); }
+    .admin-card-body  { padding: 20px; }
+
+    /* ── Drop Zone ── */
+    .drop-zone {
+      border: 2px dashed var(--gray-400); border-radius: var(--radius);
+      padding: 20px 16px; text-align: center; cursor: pointer;
+      transition: all var(--transition); background: var(--gray-100);
+    }
+    .drop-zone:hover, .drop-zone.drag-over { border-color: var(--navy); background: var(--navy-faint); }
+    .drop-zone p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+    .drop-zone strong { color: var(--navy); display: block; margin-bottom: 2px; }
+    .image-preview-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .image-preview-item {
+      position: relative; width: 76px; height: 76px;
+      border-radius: 6px; overflow: hidden; border: 1.5px solid var(--gray-200);
+    }
+    .image-preview-item img { width: 100%; height: 100%; object-fit: cover; }
+    .image-preview-item svg { width: 100%; height: 100%; padding: 10px; }
+    .image-preview-remove {
+      position: absolute; top: 2px; right: 2px;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: rgba(220,53,69,.85); color: #fff;
+      border: none; font-size: 13px; cursor: pointer; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .form-actions { display: flex; gap: 8px; margin-top: 16px; }
+
+    /* ── Product List ── */
+    .product-list { display: flex; flex-direction: column; gap: 10px; }
+    .product-list-item {
+      display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+      border: 1.5px solid var(--gray-200); border-radius: var(--radius);
+      transition: border-color var(--transition);
+    }
+    .product-list-item:hover { border-color: var(--navy); }
+    .product-list-thumb {
+      width: 52px; height: 52px; border-radius: 6px; overflow: hidden;
+      background: var(--navy-faint); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .product-list-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .product-list-thumb svg { width: 44px; height: 44px; }
+    .product-list-info { flex: 1; min-width: 0; }
+    .product-list-name {
+      font-size: 14px; font-weight: 700;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .product-list-meta { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+    .badge {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      font-size: 11px; font-weight: 700; letter-spacing: .02em;
+    }
+    .badge-plate      { background: #e8ecf6; color: #1a2d6e; }
+    .badge-cardio     { background: #e8f4ea; color: #1a5c2a; }
+    .badge-original   { background: #fef3e2; color: #7a4a00; }
+    .badge-freeweight { background: #fce8e8; color: #7a1a1a; }
+    .badge-etc        { background: #f0e8f8; color: #4a1a7a; }
+    .badge-판매중     { background: #e8f4ea; color: #1a5c2a; }
+    .badge-예약중     { background: #fef3e2; color: #7a4a00; }
+    .badge-판매완료   { background: #fce8e8; color: #7a1a1a; }
+    .product-list-actions { display: flex; gap: 5px; flex-shrink: 0; }
+
+    .list-loading, .list-empty {
+      text-align: center; padding: 40px 20px;
+      color: var(--text-muted); font-size: 14px;
+    }
+
+    /* ── Toast ── */
+    .toast {
+      position: fixed; bottom: 24px; right: 24px;
+      padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;
+      color: #fff; z-index: 9999; opacity: 0; transform: translateY(10px);
+      transition: all .3s ease; pointer-events: none;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .toast-success { background: var(--success); }
+    .toast-error   { background: var(--danger); }
+  </style>
+</head>
+<body>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-logo-title">Health Sketch</div>
+      <div class="login-logo-sub">헬스스케치 관리자</div>
+    </div>
+    <div class="login-error" id="login-error"></div>
+    <form id="login-form">
+      <div class="form-group">
+        <label class="form-label" for="login-email">이메일</label>
+        <input type="email" id="login-email" class="form-input" placeholder="admin@example.com" required autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="login-password">비밀번호</label>
+        <input type="password" id="login-password" class="form-input" placeholder="••••••••" required autocomplete="current-password" />
+      </div>
+      <button type="submit" class="btn btn-primary btn-full" id="login-btn">로그인</button>
+    </form>
+  </div>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div id="dashboard" hidden>
+
+  <header class="admin-header">
+    <span class="admin-header-title">헬스스케치 <span>관리자</span></span>
+    <button class="btn btn-sm" id="logout-btn"
+      style="color:#fff;border:1.5px solid rgba(255,255,255,.35);background:transparent;font-weight:700;">
+      로그아웃
+    </button>
+  </header>
+
+  <div class="admin-main">
+
+    <!-- 제품 추가 / 수정 폼 -->
+    <div class="admin-card" style="position:sticky;top:68px;">
+      <div class="admin-card-header">
+        <span class="admin-card-title" id="form-title">제품 추가</span>
+        <button class="btn btn-ghost btn-sm" id="form-cancel-btn" hidden>취소</button>
+      </div>
+      <div class="admin-card-body">
+        <form id="product-form" novalidate>
+          <input type="hidden" id="edit-id" />
+
+          <div class="form-group">
+            <label class="form-label" for="p-name">제품명 <span style="color:#dc3545">*</span></label>
+            <input type="text" id="p-name" class="form-input" placeholder="예) 라이프피트니스 러닝머신" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="p-category">카테고리 <span style="color:#dc3545">*</span></label>
+            <select id="p-category" class="form-select">
+              <option value="" disabled selected>카테고리 선택</option>
+              <option value="플레이트머신">플레이트머신</option>
+              <option value="유산소">유산소</option>
+              <option value="오리지널머신">오리지널머신</option>
+              <option value="프리웨이트">프리웨이트</option>
+              <option value="기타">기타</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="p-desc">설명</label>
+            <textarea id="p-desc" class="form-textarea" placeholder="제품 설명을 입력하세요"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="p-status">상태</label>
+            <select id="p-status" class="form-select">
+              <option value="판매중">판매중</option>
+              <option value="예약중">예약중</option>
+              <option value="판매완료">판매완료</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">사진 <span style="font-weight:400;color:var(--text-muted)">(최대 5장)</span></label>
+            <div class="drop-zone" id="drop-zone">
+              <input type="file" id="image-input" multiple accept="image/*" hidden />
+              <p><strong>클릭 또는 드래그하여 업로드</strong>JPG, PNG, WEBP 등</p>
+            </div>
+            <div class="image-preview-list" id="image-preview-list"></div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="save-btn" style="flex:1">저장</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 제품 목록 -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <span class="admin-card-title">등록 제품 목록</span>
+        <span id="product-count-badge" style="font-size:13px;color:var(--text-muted)"></span>
+      </div>
+      <div class="admin-card-body" style="padding:16px">
+        <div id="product-list">
+          <div class="list-loading">불러오는 중…</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module" src="js/firebase-admin.js"></script>
+</body>
+</html>
