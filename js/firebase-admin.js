@@ -114,12 +114,12 @@ console.log('[firebase-admin] 스크립트 파일 로드됨');
   onAuthStateChanged(auth, (user) => {
     console.log('[firebase-admin] onAuthStateChanged →', user ? `로그인: ${user.email}` : '비로그인');
     if (user) {
-      loginScreen.hidden = true;
-      dashboard.hidden = false;
+      loginScreen.setAttribute('hidden', '');
+      dashboard.removeAttribute('hidden');
       loadProducts();
     } else {
-      loginScreen.hidden = false;
-      dashboard.hidden = true;
+      loginScreen.removeAttribute('hidden');
+      dashboard.setAttribute('hidden', '');
     }
   });
 
