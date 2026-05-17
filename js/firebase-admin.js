@@ -1,6 +1,3 @@
-/* ── 이 로그는 import 전에 찍힘 — 파일 자체가 실행됐는지 확인용 ── */
-console.log('[firebase-admin] 스크립트 파일 로드됨');
-
 (async () => {
   /* ── Firebase CDN dynamic import (실패 시 catch로 이동) ── */
   let initializeApp, getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged;
@@ -8,14 +5,12 @@ console.log('[firebase-admin] 스크립트 파일 로드됨');
   let doc, query, orderBy, onSnapshot, serverTimestamp;
 
   try {
-    console.log('[firebase-admin] Firebase 모듈 import 시작…');
     ({ initializeApp } = await import('https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js'));
     ({ getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } =
       await import('https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js'));
     ({ getFirestore, collection, addDoc, updateDoc, deleteDoc,
        doc, query, orderBy, onSnapshot, serverTimestamp } =
       await import('https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js'));
-    console.log('[firebase-admin] ✅ Firebase 모듈 로드 완료');
   } catch (importErr) {
     console.error('[firebase-admin] ❌ Firebase 모듈 import 실패:', importErr);
     const loginScreen = document.getElementById('login-screen');
@@ -42,7 +37,6 @@ console.log('[firebase-admin] 스크립트 파일 로드됨');
     app  = initializeApp(firebaseConfig);
     auth = getAuth(app);
     db   = getFirestore(app);
-    console.log('[firebase-admin] ✅ Firebase Auth + Firestore 초기화 완료');
   } catch (initErr) {
     console.error('[firebase-admin] ❌ Firebase 초기화 실패:', initErr);
     return;
@@ -83,8 +77,6 @@ console.log('[firebase-admin] 스크립트 파일 로드됨');
     .filter(id => !document.getElementById(id));
   if (missing.length) {
     console.error('[firebase-admin] ❌ DOM 요소 없음:', missing);
-  } else {
-    console.log('[firebase-admin] ✅ 필수 DOM 요소 모두 확인');
   }
 
   /* ── 이미지 상태 ── */
@@ -112,7 +104,6 @@ console.log('[firebase-admin] 스크립트 파일 로드됨');
      Auth
   ══════════════════════════════════ */
   onAuthStateChanged(auth, (user) => {
-    console.log('[firebase-admin] onAuthStateChanged →', user ? `로그인: ${user.email}` : '비로그인');
     if (user) {
       loginScreen.setAttribute('hidden', '');
       dashboard.removeAttribute('hidden');
@@ -128,10 +119,8 @@ console.log('[firebase-admin] 스크립트 파일 로드됨');
     loginError.classList.remove('is-visible');
     loginBtn.disabled = true;
     loginBtn.textContent = '로그인 중…';
-    console.log('[firebase-admin] 로그인 시도:', loginEmail.value.trim());
     try {
       await signInWithEmailAndPassword(auth, loginEmail.value.trim(), loginPassword.value);
-      console.log('[firebase-admin] ✅ 로그인 성공');
     } catch (err) {
       console.error('[firebase-admin] ❌ 로그인 에러:', err.code, err.message);
       const MSG = {
@@ -380,5 +369,4 @@ console.log('[firebase-admin] 스크립트 파일 로드됨');
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
-  console.log('[firebase-admin] ✅ 모든 이벤트 리스너 등록 완료');
 })();

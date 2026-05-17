@@ -1,5 +1,3 @@
-console.log('[product-detail] 스크립트 실행 시작');
-
 /* ── 카테고리 맵 + SVG ── */
 const CAT_MAP = {
   '플레이트머신': 'plate',
@@ -94,12 +92,10 @@ function initRelatedClicks(grid) {
   /* Firebase dynamic import */
   let initializeApp, getFirestore, docFn, getDoc, collection, query, orderBy, limit, getDocs;
   try {
-    console.log('[product-detail] Firebase 모듈 import...');
     ({ initializeApp } =
       await import('https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js'));
     ({ getFirestore, doc: docFn, getDoc, collection, query, orderBy, limit, getDocs } =
       await import('https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js'));
-    console.log('[product-detail] ✅ Firebase 로드 완료');
   } catch (err) {
     console.error('[product-detail] ❌ Firebase import 실패:', err);
     showError();
@@ -129,7 +125,6 @@ function initRelatedClicks(grid) {
   }
 
   if (!docSnap.exists()) {
-    console.warn('[product-detail] 제품 없음:', id);
     showError();
     return;
   }
@@ -215,8 +210,6 @@ function initRelatedClicks(grid) {
       relSection.hidden = false;
     }
   } catch (err) {
-    console.warn('[product-detail] 연관 제품 로드 실패 (무시):', err);
+    console.error('[product-detail] 연관 제품 로드 실패:', err);
   }
-
-  console.log('[product-detail] ✅ 렌더링 완료:', data.name);
 })();
