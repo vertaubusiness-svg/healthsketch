@@ -3,17 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="헬스스케치 취급 제품 - 케이블머신, 러닝머신, 스미스머신, 레그프레스, 덤벨 세트 등 중고 헬스기구 전 품목 도매 판매." />
-  <meta name="keywords" content="중고헬스기구,케이블머신,랫풀다운,러닝머신,트레드밀,스미스머신,레그프레스,덤벨세트,바벨,원판,헬스기구도매" />
-  <meta name="robots" content="index, follow" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="취급 제품 | 헬스스케치" />
-  <meta property="og:description" content="플레이트머신, 유산소기구, 오리지널머신, 프리웨이트 등 헬스장 전 품목 중고 도매 판매." />
-  <meta property="og:url" content="https://vertaubusiness-svg.github.io/healthsketch/products.html" />
-  <meta property="og:site_name" content="헬스스케치" />
-  <meta property="og:locale" content="ko_KR" />
-  <link rel="canonical" href="https://vertaubusiness-svg.github.io/healthsketch/products.html" />
-  <title>취급 제품 | 헬스스케치</title>
+  <meta name="robots" content="noindex, follow" />
+  <title>제품 상세 | 헬스스케치</title>
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -58,60 +49,104 @@
 
   <main>
 
-    <!-- ===== PAGE HERO ===== -->
-    <section class="page-hero">
-      <div class="page-hero-bg"></div>
-      <div class="container page-hero-content">
-        <p class="page-hero-breadcrumb"><a href="index.html">홈</a> <span>/</span> 제품</p>
-        <h1 class="page-hero-title">취급 제품</h1>
-        <p class="page-hero-desc">헬스장 운영에 필요한 모든 중고 기구를 취급합니다</p>
+    <!-- 로딩 -->
+    <div id="detail-loading" class="detail-loading-wrap">
+      <span class="spinner" aria-label="불러오는 중"></span>
+    </div>
+
+    <!-- 에러 -->
+    <div id="detail-error" class="detail-error-wrap" hidden>
+      <p>제품을 찾을 수 없습니다.<small>잘못된 주소이거나 삭제된 제품입니다.</small></p>
+      <a href="products.html" class="btn btn-primary">전체 제품 보기</a>
+    </div>
+
+    <!-- 콘텐츠 (JS가 채움) -->
+    <div id="detail-content" hidden>
+
+      <!-- 브레드크럼 -->
+      <div class="detail-breadcrumb">
+        <div class="container">
+          <a href="index.html">홈</a>
+          <span>/</span>
+          <a href="products.html">제품</a>
+          <span>/</span>
+          <span id="bc-name">—</span>
+        </div>
       </div>
-    </section>
 
-    <!-- ===== FILTER + PRODUCT GRID ===== -->
-    <section class="section products-section" id="products">
-      <div class="container">
+      <!-- 2단 레이아웃 -->
+      <section class="detail-section">
+        <div class="container detail-layout">
 
-        <!-- Filter Tabs (products.js가 동적으로 채움) -->
-        <div class="filter-wrap" id="filter-wrap" role="tablist" aria-label="카테고리 필터">
-          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">전체</button>
+          <!-- 갤러리 -->
+          <div class="detail-gallery">
+            <div class="detail-main-wrap">
+              <img id="detail-main-img" class="detail-main-img" src="" alt="" />
+              <div id="detail-svg-wrap" class="detail-svg-wrap"></div>
+            </div>
+            <div id="detail-thumbs" class="detail-thumbs"></div>
+          </div>
+
+          <!-- 제품 정보 -->
+          <div class="detail-info">
+            <div id="detail-meta" class="detail-meta"></div>
+            <h1 id="detail-name" class="detail-name"></h1>
+            <hr class="detail-divider">
+            <p id="detail-desc" class="detail-desc"></p>
+            <hr class="detail-divider">
+
+            <!-- CTA -->
+            <div class="detail-cta">
+              <a href="tel:01099068300" class="detail-tel-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1 19.79 19.79 0 0 1 1.61 4.53 2 2 0 0 1 3.6 2.34h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l1.17-1.17a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                전화 문의 010-9906-8300
+              </a>
+              <a href="contact.html?type=buy" class="detail-contact-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="width:18px;height:18px;">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                온라인 문의하기
+              </a>
+            </div>
+
+            <!-- 매장 정보 -->
+            <div class="detail-store">
+              <div class="detail-store-row">
+                <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/></svg>
+                <span><strong>영업시간</strong>평일 09:00 – 18:00 (주말·공휴일 휴무)</span>
+              </div>
+              <div class="detail-store-row">
+                <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+                <span><strong>위치</strong>경기도 파주시 탄현면 배나무길 67-13</span>
+              </div>
+              <div class="detail-store-row">
+                <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4z"/></svg>
+                <span><strong>대표자</strong>김동수</span>
+              </div>
+            </div>
+          </div>
+
         </div>
+      </section>
 
-        <!-- Product Count -->
-        <p class="product-count" id="product-count" aria-live="polite">불러오는 중…</p>
-
-        <!-- Loading -->
-        <div class="products-loading" id="products-loading" aria-label="제품 목록 불러오는 중">
-          <span class="spinner" aria-hidden="true"></span>
+      <!-- 연관 제품 -->
+      <section id="related-section" class="related-section" hidden>
+        <div class="container">
+          <h2 id="related-title">같은 카테고리 제품</h2>
+          <div id="related-grid" class="product-grid"></div>
         </div>
+      </section>
 
-        <!-- Product Grid (products.js가 동적으로 채움) -->
-        <div class="product-grid" id="product-grid"></div>
-
-        <!-- No Result -->
-        <div class="no-result" id="no-result" hidden>
-          <p>현재 등록된 제품이 없습니다.</p>
+      <!-- 돌아가기 -->
+      <div class="detail-back-section">
+        <div class="container">
+          <a href="products.html" class="btn btn-outline">← 전체 제품 보기</a>
         </div>
-
       </div>
-    </section>
 
-    <!-- ===== PRODUCT CTA ===== -->
-    <section class="product-cta-section">
-      <div class="container product-cta-inner">
-        <div class="product-cta-icon" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="24" cy="24" r="20" stroke-opacity="0.3"/>
-            <path d="M16 24 h16 M24 16 v16" stroke-linecap="round" stroke-width="2.5"/>
-          </svg>
-        </div>
-        <div>
-          <h2>원하는 제품이 없으신가요?</h2>
-          <p>목록에 없는 기종도 매입·수배 가능합니다. 직접 문의주시면 최대한 도와드립니다.</p>
-        </div>
-        <a href="contact.html" class="btn btn-primary">직접 문의하기</a>
-      </div>
-    </section>
+    </div>
 
   </main>
 
@@ -167,6 +202,6 @@
   </footer>
 
   <script src="js/main.js"></script>
-  <script type="module" src="js/firebase-products.js"></script>
+  <script type="module" src="js/product-detail.js"></script>
 </body>
 </html>
