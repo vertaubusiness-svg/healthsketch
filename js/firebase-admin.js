@@ -6,9 +6,6 @@ import {
   getFirestore, collection, addDoc, updateDoc, deleteDoc,
   doc, query, orderBy, onSnapshot, serverTimestamp,
 } from 'https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js';
-import {
-  getStorage, ref, uploadBytes, getDownloadURL, deleteObject,
-} from 'https://www.gstatic.com/firebasejs/12.13.0/firebase-storage.js';
 
 /* ── Firebase 초기화 ── */
 const firebaseConfig = {
@@ -19,10 +16,13 @@ const firebaseConfig = {
   messagingSenderId: '800191894133',
   appId:             '1:800191894133:web:8c342fb3fe4617e29f5e3c',
 };
-const app     = initializeApp(firebaseConfig);
-const auth    = getAuth(app);
-const db      = getFirestore(app);
-const storage = getStorage(app);
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db   = getFirestore(app);
+
+/* ── Cloudinary 설정 ── */
+const CLOUDINARY_URL    = 'https://api.cloudinary.com/v1_1/dkz5mcobi/image/upload';
+const CLOUDINARY_PRESET = 'healthsketch';
 
 /* ── DOM 참조 ── */
 const loginScreen       = document.getElementById('login-screen');
@@ -44,15 +44,17 @@ const pStatus           = document.getElementById('p-status');
 const dropZone          = document.getElementById('drop-zone');
 const imageInput        = document.getElementById('image-input');
 const imagePreviewList  = document.getElementById('image-preview-list');
+const uploadProgress    = document.getElementById('upload-progress');
 const saveBtn           = document.getElementById('save-btn');
 const productList       = document.getElementById('product-list');
 const productCountBadge = document.getElementById('product-count-badge');
 const toastEl           = document.getElementById('toast');
 
 /* ── 이미지 상태 ── */
-let existingImages = []; // { url, path } — 편집 시 기존 이미지
-let pendingFiles   = []; // File[] — 새로 추가할 파일
-let removedPaths   = []; // string[] — 삭제할 Storage 경로
+// existingImages: string[] — Cloudinary URL (편집 시 기존 이미지)
+// pendingFiles:   File[]   — 새로 추가할 파일
+let existingImages = [];
+let pendingFiles   = [];
 
 /* ── 카테고리 맵 + SVG ── */
 const CAT_MAP = {
@@ -130,15 +132,18 @@ function handleFiles(files) {
 function renderPreviews() {
   imagePreviewList.innerHTML = '';
 
-  existingImages.forEach((img, i) => {
-    const item = makePreviewItem(img.url, () => {
-      removedPaths.push(img.path);
+  // 기존 이미지 (Cloudinary URL)
+  existingImages.forEach((url, i) => {
+    const item = makePreviewItem(url, () => {
       existingImages.splice(i, 1);
       renderPreviews();
+      // Cloudinary unsigned preset은 클라이언트 삭제 불가.
+      // 이미지는 Cloudinary 콘솔에서 수동 삭제 가능.
     });
     imagePreviewList.appendChild(item);
   });
 
+  // 새로 추가한 파일
   pendingFiles.forEach((file, i) => {
     const item = makePreviewItem(URL.createObjectURL(file), () => {
       pendingFiles.splice(i, 1);
@@ -174,22 +179,19 @@ productForm.addEventListener('submit', async (e) => {
   if (!pCategory.value)    { showToast('카테고리를 선택해 주세요.', 'error'); return; }
 
   saveBtn.disabled = true;
-  saveBtn.textContent = '저장 중…';
 
   try {
-    const newImageData = await uploadImages(pendingFiles);
-    await deleteImages(removedPaths);
+    // Cloudinary 업로드
+    const newUrls = await uploadToCloudinary(pendingFiles);
 
-    const allUrls  = [...existingImages.map(i => i.url),  ...newImageData.map(i => i.url)];
-    const allPaths = [...existingImages.map(i => i.path), ...newImageData.map(i => i.path)];
+    const allImages = [...existingImages, ...newUrls];
 
     const data = {
       name:        pName.value.trim(),
       category:    pCategory.value,
       description: pDesc.value.trim(),
       status:      pStatus.value,
-      images:      allUrls,
-      imagePaths:  allPaths,
+      images:      allImages,
       updatedAt:   serverTimestamp(),
     };
 
@@ -210,6 +212,7 @@ productForm.addEventListener('submit', async (e) => {
   } finally {
     saveBtn.disabled = false;
     saveBtn.textContent = '저장';
+    setUploadProgress('');
   }
 });
 
@@ -222,31 +225,36 @@ function resetForm() {
   formCancelBtn.hidden = true;
   existingImages = [];
   pendingFiles   = [];
-  removedPaths   = [];
   renderPreviews();
+  setUploadProgress('');
 }
 
 /* ══════════════════════════════════
-   Storage 업로드 / 삭제
+   Cloudinary 업로드
 ══════════════════════════════════ */
-async function uploadImages(files) {
-  const results = [];
-  for (const file of files) {
-    const path      = `products/${Date.now()}_${Math.random().toString(36).slice(2)}_${file.name}`;
-    const storRef   = ref(storage, path);
-    await uploadBytes(storRef, file);
-    const url = await getDownloadURL(storRef);
-    results.push({ url, path });
+async function uploadToCloudinary(files) {
+  const urls = [];
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    setUploadProgress(`사진 업로드 중… (${i + 1}/${files.length})`);
+    saveBtn.textContent = `업로드 중 ${i + 1}/${files.length}`;
+
+    const form = new FormData();
+    form.append('file', file);
+    form.append('upload_preset', CLOUDINARY_PRESET);
+
+    const res = await fetch(CLOUDINARY_URL, { method: 'POST', body: form });
+    if (!res.ok) throw new Error(`Cloudinary 업로드 실패: ${res.status}`);
+    const json = await res.json();
+    urls.push(json.secure_url);
   }
-  return results;
+  return urls;
 }
 
-async function deleteImages(paths) {
-  for (const path of paths) {
-    if (!path) continue;
-    try { await deleteObject(ref(storage, path)); }
-    catch { /* 이미 없는 파일은 무시 */ }
-  }
+function setUploadProgress(msg) {
+  if (!uploadProgress) return;
+  uploadProgress.textContent = msg;
+  uploadProgress.style.display = msg ? 'block' : 'none';
 }
 
 /* ══════════════════════════════════
@@ -304,18 +312,14 @@ function buildListItem(docSnap) {
 /* ── 수정 시작 ── */
 function startEdit(docSnap) {
   const d = docSnap.data();
-  editId.value   = docSnap.id;
-  pName.value    = d.name        || '';
-  pCategory.value = d.category  || '';
-  pDesc.value    = d.description || '';
-  pStatus.value  = d.status      || '판매중';
+  editId.value    = docSnap.id;
+  pName.value     = d.name        || '';
+  pCategory.value = d.category    || '';
+  pDesc.value     = d.description || '';
+  pStatus.value   = d.status      || '판매중';
 
-  existingImages = (d.images || []).map((url, i) => ({
-    url,
-    path: (d.imagePaths || [])[i] || '',
-  }));
-  pendingFiles = [];
-  removedPaths = [];
+  existingImages = [...(d.images || [])]; // Cloudinary URL 배열
+  pendingFiles   = [];
   renderPreviews();
 
   formTitle.textContent = '제품 수정';
@@ -325,9 +329,11 @@ function startEdit(docSnap) {
 
 /* ── 삭제 ── */
 async function confirmDelete(id, data) {
-  if (!confirm(`"${data.name}" 제품을 삭제하시겠습니까?\n사진도 함께 삭제됩니다.`)) return;
+  if (!confirm(`"${data.name}" 제품을 삭제하시겠습니까?`)) return;
+  // Cloudinary unsigned preset은 클라이언트에서 이미지 삭제 불가.
+  // Cloudinary 콘솔(Media Library)에서 수동 삭제하거나
+  // 서버사이드 Admin API(signed)를 통해 처리 필요.
   try {
-    await deleteImages(data.imagePaths || []);
     await deleteDoc(doc(db, 'products', id));
     showToast('제품이 삭제되었습니다.', 'success');
   } catch (err) {
