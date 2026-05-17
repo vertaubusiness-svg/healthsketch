@@ -29,13 +29,15 @@ function esc(str) {
 }
 
 function showError() {
-  loadingEl.hidden = true;
-  errorEl.hidden   = false;
+  loadingEl.setAttribute('hidden', '');
+  contentEl.setAttribute('hidden', '');
+  errorEl.removeAttribute('hidden');
 }
 
 function showContent() {
-  loadingEl.hidden = true;
-  contentEl.hidden = false;
+  loadingEl.setAttribute('hidden', '');
+  errorEl.setAttribute('hidden', '');
+  contentEl.removeAttribute('hidden');
 }
 
 /* ── 연관 제품 카드 렌더링 (products.html과 동일한 구조) ── */
