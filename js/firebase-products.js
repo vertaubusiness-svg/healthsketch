@@ -41,6 +41,9 @@ const loading     = document.getElementById('products-loading');
 const noResult    = document.getElementById('no-result');
 const countEl     = document.getElementById('product-count');
 
+/* ── 제품 데이터 캐시 (모달에서 참조) ── */
+let allProducts = [];
+
 /* ── HTML 이스케이프 ── */
 function esc(str) {
   return String(str || '')
@@ -49,7 +52,7 @@ function esc(str) {
 }
 
 /* ── 카드 렌더링 ── */
-function renderCard(data) {
+function renderCard(data, index) {
   const catKey   = CAT_MAP[data.category] || 'etc';
   const catLabel = data.category || '기타';
   const sold     = data.status === '판매완료';
@@ -67,16 +70,21 @@ function renderCard(data) {
 
   const actionBtn = sold
     ? ''
-    : '<a href="contact.html?type=buy" class="btn btn-secondary btn-sm">문의하기</a>';
+    : '<a href="contact.html?type=buy" class="btn btn-secondary btn-sm" data-no-modal>문의하기</a>';
 
-  return `<article class="product-card${sold ? ' product-card--sold' : ''}" data-category="${catKey}">
+  return `<article class="product-card${sold ? ' product-card--sold' : ''} product-card--clickable"
+      data-category="${catKey}" data-index="${index}"
+      role="button" tabindex="0" aria-label="${esc(data.name)} 상세 보기">
     <div class="product-thumb">${thumb}</div>
     <div class="product-body">
       <span class="product-badge badge-${catKey}">${esc(catLabel)}</span>
       ${statusBadge}
       <h3 class="product-name">${esc(data.name)}</h3>
       <p class="product-desc">${esc(data.description || '')}</p>
-      ${actionBtn}
+      <div class="product-card-actions">
+        <button class="btn-detail" type="button" data-open-modal>상세 보기</button>
+        ${actionBtn}
+      </div>
     </div>
   </article>`;
 }
@@ -141,9 +149,130 @@ function applyFadeIn() {
 }
 
 /* ══════════════════════════════════
+   카드 클릭 → 모달 열기
+══════════════════════════════════ */
+function initCardClicks() {
+  if (!grid) return;
+  grid.addEventListener('click', (e) => {
+    // 문의하기 링크는 모달 열지 않음
+    if (e.target.closest('[data-no-modal]')) return;
+
+    const card = e.target.closest('.product-card--clickable');
+    if (!card) return;
+    const idx = parseInt(card.dataset.index, 10);
+    if (!isNaN(idx) && allProducts[idx]) openModal(allProducts[idx]);
+  });
+  // 키보드 접근성 (Enter/Space)
+  grid.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const card = e.target.closest('.product-card--clickable');
+    if (!card) return;
+    e.preventDefault();
+    const idx = parseInt(card.dataset.index, 10);
+    if (!isNaN(idx) && allProducts[idx]) openModal(allProducts[idx]);
+  });
+}
+
+/* ══════════════════════════════════
+   모달
+══════════════════════════════════ */
+const modal       = document.getElementById('pmodal');
+const modalMainImg = document.getElementById('pmodal-main-img');
+const modalSvgWrap = document.getElementById('pmodal-svg-wrap');
+const modalThumbs  = document.getElementById('pmodal-thumbs');
+const modalMeta    = document.getElementById('pmodal-meta');
+const modalTitle   = document.getElementById('pmodal-title');
+const modalDesc    = document.getElementById('pmodal-desc');
+const modalContact = document.getElementById('pmodal-contact');
+
+function openModal(data) {
+  if (!modal) return;
+  const catKey   = CAT_MAP[data.category] || 'etc';
+  const catLabel = data.category || '기타';
+  const sold     = data.status === '판매완료';
+  const reserved = data.status === '예약중';
+  const images   = (data.images && data.images.length) ? data.images : [];
+
+  /* 메타 뱃지 */
+  const statusHtml = sold
+    ? '<span class="product-status status-sold">판매완료</span>'
+    : reserved ? '<span class="product-status status-reserved">예약중</span>' : '';
+  modalMeta.innerHTML = `<span class="product-badge badge-${catKey}">${esc(catLabel)}</span>${statusHtml}`;
+
+  /* 제목 / 설명 */
+  modalTitle.textContent = data.name || '';
+  modalDesc.textContent  = data.description || '';
+
+  /* 문의하기 */
+  modalContact.style.display = sold ? 'none' : '';
+
+  /* 갤러리 */
+  if (images.length) {
+    modalMainImg.src = images[0];
+    modalMainImg.alt = data.name || '';
+    modalMainImg.style.display = '';
+    modalSvgWrap.innerHTML = '';
+
+    modalThumbs.innerHTML = images.map((url, i) =>
+      `<button class="pmodal-thumb${i === 0 ? ' active' : ''}" data-src="${esc(url)}" aria-label="사진 ${i + 1}" type="button">
+         <img src="${esc(url)}" alt="사진 ${i + 1}" loading="lazy" />
+       </button>`
+    ).join('');
+
+    modalThumbs.style.display = images.length > 1 ? '' : 'none';
+  } else {
+    modalMainImg.src = '';
+    modalMainImg.style.display = 'none';
+    modalSvgWrap.innerHTML = SVG[catKey] || SVG.etc;
+    modalThumbs.innerHTML = '';
+    modalThumbs.style.display = 'none';
+  }
+
+  modal.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('pmodal-close-x').focus();
+}
+
+function closeModal() {
+  if (!modal) return;
+  modal.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+function initModal() {
+  if (!modal) return;
+
+  /* 썸네일 클릭 */
+  modalThumbs.addEventListener('click', (e) => {
+    const thumb = e.target.closest('.pmodal-thumb');
+    if (!thumb) return;
+    modalThumbs.querySelectorAll('.pmodal-thumb').forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+    modalMainImg.src = thumb.dataset.src;
+  });
+
+  /* 닫기 버튼들 */
+  document.getElementById('pmodal-close-x').addEventListener('click', closeModal);
+  document.getElementById('pmodal-close-2').addEventListener('click', closeModal);
+
+  /* 오버레이 클릭 (박스 외부) */
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  /* ESC 키 */
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+}
+
+/* ══════════════════════════════════
    Firestore 실시간 구독
 ══════════════════════════════════ */
 if (grid) {
+  initModal();
+  initCardClicks();
+
   const q = query(collection(db, 'products'), orderBy('createdAt', 'desc'));
 
   onSnapshot(q, (snapshot) => {
@@ -153,13 +282,14 @@ if (grid) {
       if (countEl)  countEl.innerHTML = '전체 <strong>0</strong>개 제품';
       if (noResult) noResult.hidden = false;
       grid.innerHTML = '';
+      allProducts = [];
       return;
     }
 
-    const products = snapshot.docs.map(d => d.data());
-    renderFilters(products);
-    grid.innerHTML = products.map(renderCard).join('');
-    initFilter(products.length);
+    allProducts = snapshot.docs.map(d => d.data());
+    renderFilters(allProducts);
+    grid.innerHTML = allProducts.map((d, i) => renderCard(d, i)).join('');
+    initFilter(allProducts.length);
     applyFadeIn();
     if (noResult) noResult.hidden = true;
   }, (err) => {

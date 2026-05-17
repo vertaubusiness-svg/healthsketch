@@ -115,6 +115,37 @@
 
   </main>
 
+  <!-- ===== PRODUCT DETAIL MODAL ===== -->
+  <div id="pmodal" class="pmodal-overlay" role="dialog" aria-modal="true" aria-labelledby="pmodal-title">
+    <div class="pmodal-box">
+      <button class="pmodal-close-x" id="pmodal-close-x" aria-label="닫기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <div class="pmodal-inner">
+        <!-- 갤러리 -->
+        <div class="pmodal-gallery">
+          <div class="pmodal-main-wrap">
+            <img class="pmodal-main-img" id="pmodal-main-img" src="" alt="" />
+            <div class="pmodal-svg-wrap" id="pmodal-svg-wrap"></div>
+          </div>
+          <div class="pmodal-thumbs" id="pmodal-thumbs"></div>
+        </div>
+        <!-- 정보 -->
+        <div class="pmodal-info">
+          <div class="pmodal-meta" id="pmodal-meta"></div>
+          <h2 class="pmodal-title" id="pmodal-title"></h2>
+          <p class="pmodal-desc" id="pmodal-desc"></p>
+          <div class="pmodal-actions">
+            <a href="contact.html?type=buy" class="btn btn-primary" id="pmodal-contact">문의하기</a>
+            <button class="btn btn-outline" id="pmodal-close-2">닫기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ===== FOOTER ===== -->
   <footer class="site-footer">
     <div class="container footer-inner">
