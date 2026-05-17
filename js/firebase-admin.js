@@ -7,6 +7,8 @@ import {
   doc, query, orderBy, onSnapshot, serverTimestamp,
 } from 'https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js';
 
+console.log('[firebase-admin] ✅ 모듈 로드 완료');
+
 /* ── Firebase 초기화 ── */
 const firebaseConfig = {
   apiKey:            'AIzaSyBK2nv1p52OCArp3G9rpWNZi64RYvbb474',
@@ -19,6 +21,7 @@ const firebaseConfig = {
 const app  = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db   = getFirestore(app);
+console.log('[firebase-admin] ✅ Firebase Auth + Firestore 초기화 완료');
 
 /* ── Cloudinary 설정 ── */
 const CLOUDINARY_URL    = 'https://api.cloudinary.com/v1_1/dkz5mcobi/image/upload';
@@ -77,6 +80,7 @@ const SVG = {
    Auth
 ══════════════════════════════════ */
 onAuthStateChanged(auth, (user) => {
+  console.log('[firebase-admin] onAuthStateChanged →', user ? `로그인: ${user.email}` : '비로그인');
   if (user) {
     loginScreen.hidden = true;
     dashboard.hidden = false;
@@ -92,11 +96,24 @@ loginForm.addEventListener('submit', async (e) => {
   loginError.classList.remove('is-visible');
   loginBtn.disabled = true;
   loginBtn.textContent = '로그인 중…';
+  console.log('[firebase-admin] 로그인 시도:', loginEmail.value.trim());
   try {
     await signInWithEmailAndPassword(auth, loginEmail.value.trim(), loginPassword.value);
-  } catch {
-    loginError.textContent = '이메일 또는 비밀번호가 올바르지 않습니다.';
+    console.log('[firebase-admin] ✅ 로그인 성공');
+  } catch (err) {
+    console.error('[firebase-admin] ❌ 로그인 에러:', err.code, err.message);
+    const MSG = {
+      'auth/invalid-credential':    '이메일 또는 비밀번호가 올바르지 않습니다.',
+      'auth/user-not-found':        '등록되지 않은 이메일입니다.',
+      'auth/wrong-password':        '비밀번호가 올바르지 않습니다.',
+      'auth/invalid-email':         '이메일 형식이 올바르지 않습니다.',
+      'auth/too-many-requests':     '로그인 시도가 너무 많습니다. 잠시 후 다시 시도하세요.',
+      'auth/unauthorized-domain':   '이 도메인은 Firebase에서 허용되지 않습니다. Firebase 콘솔 > Authentication > Settings > 승인된 도메인에 추가하세요.',
+      'auth/network-request-failed':'네트워크 오류가 발생했습니다. 인터넷 연결을 확인하세요.',
+    };
+    loginError.textContent = MSG[err.code] || `오류: ${err.code || err.message}`;
     loginError.classList.add('is-visible');
+  } finally {
     loginBtn.disabled = false;
     loginBtn.textContent = '로그인';
   }
